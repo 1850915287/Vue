@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<!-- v-show指令的作用是：根据真假切换元素的显示状态 -->
+		<!-- 原理是修改元素的display，实现显示隐藏 -->
+		<!-- 指令后面的内容，最终会解析为布尔值 -->
+		<!-- 值为true元素显示，值为false元素隐藏-->
+		<!-- 数据改变之后，对应元素的显示状态会同步更新 -->
+		<div id='app'>
+			<input type="button" value="显示文字" @click="Show"></input></br>
+			<label v-show="IsShow">文字</label></br>
+			<input type="button" value="增加年龄" @click="addAge" /></br>
+			<label v-show="age>=18">18岁才能看</label>
+		</div>
+
+		<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: '#app',
+				data: {
+					IsShow: false,
+					age: 17
+				},
+				methods: {
+					Show: function() {
+						this.IsShow = !this.IsShow;
+					},
+					addAge: function() {
+						this.age++;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
