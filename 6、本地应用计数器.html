@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<!-- 创建Vue示例时：el（挂载点），data（数据），methods（方法） -->
+		<!-- v-on指令的作用是绑定事件，简写为@ -->
+		<!-- 方法中通过this，关键字获取data中的数据 -->
+		<!-- v-text指令作用是：设置元素的文本值，简写为{{}} -->
+		<!-- v-html指令的作用是：设置元素的innerHTML -->
+		<div id='app'>
+			<input type="button" value="-" @click="sub" />
+			<span>{{num}}</span>
+			<input type="button" value="+" @click="add" />
+		</div>
+		<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: '#app',
+				data: {
+					num: '1'
+				},
+				methods: {
+					add: function() {
+						if (this.num >= 10) {
+							alert('不要再点了，已经最大了！')
+						} else {
+							this.num++;
+						}
+					},
+					sub: function() {
+						if (this.num <= 0) {
+							alert('不要再点了，已经最小了！')
+						} else {
+							this.num--;
+						}
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
