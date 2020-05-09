@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<!-- v-on指令的作用是：为元素绑定事件 -->
+		<!-- 事件名不需要写on -->
+		<!-- 指令可以简写为@ -->
+		<!-- 绑定的方法定义在methods属性中 -->
+		<!-- 方法内部通过this关键字可以访问定义在data中数据 -->
+		<div id='app'>
+			<input type="button" value="v-on指令" v-on:click="doIT" />
+			<input type="button" value="v-on简写" @click="doIT" />
+			<input type="button" value="双击事件" @dblclick="doIT" />
+			<h1 @click="changeFood">{{food}}</h1>
+		</div>
+		<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: '#app',
+				data: {
+					food: "西蓝花炒鸡蛋"
+				},
+				methods: {
+					doIT: function() {
+						alert('做IT');
+					},
+					changeFood: function() {
+						this.food += '好好吃！';
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
