@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="vue.js" type="text/javascript" charset="UTF-8"></script>
+	</head>
+	<body>
+		<div id='app'>
+			<!-- v-if指令为false时不会渲染元素 -->
+			<p v-if="seen">你现在可以看到我</p>
+			<!-- v-bind指令绑定数据 -->
+			<a v-bind:href="url">...</a>
+			<!-- 修饰符 -->
+			<div @click="click1">
+				<!-- . 为修饰符，后面加上相应的关键字。.stop执行完成click2后停止执行后续点击事件 -->
+				<div @click.stop="click2">
+					点我
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el:'#app',
+			data:{
+				seen:true,
+				url:"https://cn.vuejs.org/v2/guide/syntax.html#%E6%8C%87%E4%BB%A4"
+			},
+			methods:{
+				click1:function(){
+					console.log('click1');
+				},
+				click2:function(){
+					console.log('click2');
+				}
+			}
+		})
+	</script>
+</html>
