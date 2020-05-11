@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<!-- 事件绑定的方法写出函数调用形式，可以传入自定义参数 -->
+		<!-- 定义方法时需要定义形参来接收传入的实参 -->
+		<!-- 事件的后面跟上 .修饰符 可以对事件进行限制 -->
+		<!-- .enter 可以限制触发的按键为回车 -->
+		<!-- 事件修饰符有多种 -->
+		<div id='app'>
+			<input type="button" value="按钮" @click="printLog('老铁',666)" />
+			<input type="text" @keyup.enter="sayHi"/>
+		</div>
+		<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: '#app',
+				methods: {
+					printLog: function(p1, p2) {
+						console.log(p1);
+						console.log(p2);
+					},
+					sayHi: function() {
+						alert('你好');
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
