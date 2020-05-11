@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="./css/index.css" />
+	</head>
+	<body>
+		<!-- 列表数据使用数组保存 -->
+		<!-- v-bind指令可以设置元素属性，比如src -->
+		<!-- v-show和v-if都可以切换元素的显示状态，频繁切换用v-show -->
+		<div id="mask">
+			<div class="center">
+				<h2 class="title">
+					<img src='images/logo.png' />深圳创维校区环境
+				</h2>
+				<img :src="imgArrey[index]" />
+				<a href="javascript:void(0)" class="left" @click="prev" v-show="index>0">
+					<img src="images/prev.png"/>
+				</a>
+				<a href="javascript:void(0)" class="right" @click="next" v-show="index<imgArrey.length-1">
+					<img src="images/next.png" />
+				</a>
+			</div>
+		</div>
+		<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: '#mask',
+				data: {
+					imgArrey: [
+						"./images/00.jpg",
+						"./images/01.jpg",
+						"./images/02.jpg",
+						"./images/03.jpg",
+						"./images/04.jpg",
+						"./images/05.jpg",
+						"./images/06.jpg",
+						"./images/07.jpg",
+						"./images/08.jpg",
+						"./images/09.jpg",
+					],
+					index: 0
+				},
+				methods: {
+					prev: function() {
+						this.index--
+					},
+					next: function() {
+						this.index++
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
