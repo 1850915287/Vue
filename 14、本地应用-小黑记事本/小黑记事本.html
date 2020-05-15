@@ -23,7 +23,7 @@
 					<li class="todo" v-for="(item,index) in array">
 						<div class="view">
 							<span class="index">{{ index +1}}.</span> <label>{{ item }}</label>
-							<button class="destroy"></button>
+							<button class="destroy" @click="remove(index)" ></button>
 						</div>
 					</li>
 				</ul>
@@ -54,6 +54,9 @@
 				methods:{
 					setArray:function(){
 						this.array.push(this.inputValue);
+					},
+					remove:function(index){
+						this.array.splice(index,1);
 					}
 				}
 			})
