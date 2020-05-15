@@ -30,8 +30,8 @@
 			</section>
 			<!-- 统计和清空 -->
 			<footer class="footer">
-				<span class="todo-count"> <strong>{{ array.length }}</strong> items left </span>
-				<button class="clear-completed" @click="clear">
+				<span class="todo-count" v-if="array.length!=0"> <strong>{{ array.length }}</strong> items left </span>
+				<button class="clear-completed" @click="clear" v-show="array.length!=0">
 					Clear
 				</button>
 			</footer>
