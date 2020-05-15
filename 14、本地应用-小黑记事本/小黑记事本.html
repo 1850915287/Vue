@@ -31,7 +31,7 @@
 			<!-- 统计和清空 -->
 			<footer class="footer">
 				<span class="todo-count"> <strong>{{ array.length }}</strong> items left </span>
-				<button class="clear-completed">
+				<button class="clear-completed" @click="clear">
 					Clear
 				</button>
 			</footer>
@@ -57,6 +57,9 @@
 					},
 					remove:function(index){
 						this.array.splice(index,1);
+					},
+					clear:function(){
+						this.array=[];
 					}
 				}
 			})
