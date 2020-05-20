@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<!-- axios回调函数中的this已经该表，无法访问到data中数据 -->
+		<!-- 把this保存起来，回调函数中直接使用保存的this即可 -->
+		<!-- 和本地应用最大的区别就是改变了数据来源 -->
+		<div id="app">
+			<input type="button" value="获取笑话" @click="getjoke" />
+			<p>{{joke}}</p>
+		</div>
+		<!-- 官网提供的 axios 在线地址 -->
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script>
+			var app = new Vue({
+				el: "#app",
+				data: {
+					joke: "很好笑的笑话"
+				},
+				methods: {
+					getjoke: function() {
+						var then = this;
+						axios.get("https://autumnfish.cn/api/joke").then(
+							function(response) {
+								then.joke = response.data
+							},
+							function(error) {}
+						);
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
