@@ -24,7 +24,7 @@
 					<div class='song_wrapper'>
 						<ul class="song_list">
 							<li v-for="item in musicList">
-								<a href="javascript:;"></a>
+								<a href="javascript:;"@click="playMusic(item.id)"></a>
 								<b>{{item.name}}</b>
 								<span><i></i></span>
 							</li>
@@ -55,7 +55,7 @@
 					</div>
 				</div>
 				<div class="audio_con">
-					<audio ref='audio' src="" controls autoplay loop class="myaudio"></audio>
+					<audio ref='audio' :src="musicUrl" controls autoplay loop class="myaudio"></audio>
 				</div>
 				<div class="video_con" style="display: none;">
 					<video controls="controls"></video>
