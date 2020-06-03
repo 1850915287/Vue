@@ -11,7 +11,9 @@ var app = new Vue({
 		// 音乐地址
 		musicUrl: "",
 		// 音乐封面
-		picUrl:""
+		picUrl:"",
+		// 评论数组
+		commentList:[]
 	},
 	methods: {
 		// 搜索歌曲
@@ -45,6 +47,13 @@ var app = new Vue({
 					// console.log(response.data.songs[0].al.picUrl);
 					that.picUrl=response.data.songs[0].al.picUrl;
 				}
+			)
+			// 获取歌曲评论
+			axios.get("https://autumnfish.cn/comment/hot?type=0&id="+musicId).then(
+				function(response){
+						console.log(response);
+						that.commentList = response.data.hotComments
+				}				
 			)
 		}
 	}
