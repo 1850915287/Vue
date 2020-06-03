@@ -9,7 +9,9 @@ var app = new Vue({
 		// 歌曲数组
 		musicList: [],
 		// 音乐地址
-		musicUrl: ""
+		musicUrl: "",
+		// 音乐封面
+		picUrl:""
 	},
 	methods: {
 		// 搜索歌曲
@@ -28,11 +30,20 @@ var app = new Vue({
 		// 播放歌曲
 		playMusic: function(musicId) {
 			var that = this;
-			console.log(musicId);
+			// console.log(musicId);
+			// 获取音乐链接
 			axios.get("https://autumnfish.cn/song/url?id=" + musicId).then(
 				function(response) {
 					// console.log(response);
 					 that.musicUrl = response.data.data[0].url;
+				}
+			)
+			// 获取音乐详细
+			axios.get("https://autumnfish.cn/song/detail?ids="+musicId).then(
+				function(response){
+					// console.log(response);
+					// console.log(response.data.songs[0].al.picUrl);
+					that.picUrl=response.data.songs[0].al.picUrl;
 				}
 			)
 		}
