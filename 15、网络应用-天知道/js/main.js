@@ -4,7 +4,7 @@
 var app = new Vue({
 	el: "#app",
 	data: {
-		city: "",
+		city: "苏州",
 		weathers: []
 	},
 	methods: {
@@ -14,10 +14,14 @@ var app = new Vue({
 			axios.get('http://wthrcdn.etouch.cn/weather_mini?city=' + this.city)
 				.then(function(response) {
 					// console.log(response);
-					that.weathers=response.data.data.forecast;
+					that.weathers = response.data.data.forecast;
 				}).catch(function(error) {
 					console.log(error);
 				})
+		},
+		setCity: function(city) {
+			this.city=city;
+			this.getWeather();
 		}
 	}
 })
