@@ -13,7 +13,9 @@ var app = new Vue({
 		// 音乐封面
 		picUrl:"",
 		// 评论数组
-		commentList:[]
+		commentList:[],
+		// 动画播放状态
+		isPlay:false
 	},
 	methods: {
 		// 搜索歌曲
@@ -55,6 +57,12 @@ var app = new Vue({
 						that.commentList = response.data.hotComments
 				}				
 			)
-		}
+		},
+		play:function(){
+			this.isPlay=true;
+		},
+		pause:function(){
+			this.isPlay=false;
+		}		
 	}
 });
