@@ -11,11 +11,15 @@ var app = new Vue({
 		// 音乐地址
 		musicUrl: "",
 		// 音乐封面
-		picUrl:"",
+		picUrl: "",
 		// 评论数组
-		commentList:[],
+		commentList: [],
 		// 动画播放状态
-		isPlay:false
+		isPlay: false,
+		// mv播放地址
+		mvUrl:"",
+		// mv显示状态
+		isMv:false
 	},
 	methods: {
 		// 搜索歌曲
@@ -24,6 +28,7 @@ var app = new Vue({
 			axios.get("https://autumnfish.cn/search?keywords=" + this.query).then(
 				function(response) {
 					// console.log(response);
+					console.log(response.data.result.songs);
 					that.musicList = response.data.result.songs;
 				},
 				function(Error) {
@@ -39,30 +44,47 @@ var app = new Vue({
 			axios.get("https://autumnfish.cn/song/url?id=" + musicId).then(
 				function(response) {
 					// console.log(response);
-					 that.musicUrl = response.data.data[0].url;
+					that.musicUrl = response.data.data[0].url;
 				}
 			)
 			// 获取音乐详细
-			axios.get("https://autumnfish.cn/song/detail?ids="+musicId).then(
-				function(response){
+			axios.get("https://autumnfish.cn/song/detail?ids=" + musicId).then(
+				function(response) {
 					// console.log(response);
 					// console.log(response.data.songs[0].al.picUrl);
-					that.picUrl=response.data.songs[0].al.picUrl;
+					that.picUrl = response.data.songs[0].al.picUrl;
 				}
 			)
 			// 获取歌曲评论
-			axios.get("https://autumnfish.cn/comment/hot?type=0&id="+musicId).then(
-				function(response){
-						console.log(response);
-						that.commentList = response.data.hotComments
-				}				
+			axios.get("https://autumnfish.cn/comment/hot?type=0&id=" + musicId).then(
+				function(response) {
+					console.log(response);
+					that.commentList = response.data.hotComments
+				}
 			)
 		},
-		play:function(){
-			this.isPlay=true;
+		// 播放歌曲
+		play: function() {
+			this.isPlay = true;
 		},
-		pause:function(){
-			this.isPlay=false;
-		}		
+		// 暂停歌曲
+		pause: function() {
+			this.isPlay = false;
+		},
+		// 播放MV
+		playMv: function(mvid) {
+			var that = this;
+			axios.get('https://autumnfish.cn//mv/url?id=' + mvid).then(
+				function(response){
+					console.log(response.data.data.url);
+					that.mvUrl=response.data.data.url;
+					that.isMv=true;
+				}
+			)
+		},
+		// 隐藏遮罩层
+		hide:function(){
+			this.isMv=false;
+		}
 	}
 });

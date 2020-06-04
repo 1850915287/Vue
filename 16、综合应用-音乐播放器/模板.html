@@ -26,7 +26,7 @@
 							<li v-for="item in musicList">
 								<a href="javascript:;"@click="playMusic(item.id)"></a>
 								<b>{{item.name}}</b>
-								<span><i></i></span>
+								<span v-if="item.mvid!=0" @click="playMv(item.mvid)"><i></i></span>
 							</li>
 							<!-- <li><a href="javascript:;"></a> <b>你好</b> <span><i></i></span></li> -->
 						</ul>
@@ -57,9 +57,9 @@
 				<div class="audio_con">
 					<audio ref='audio' @play="play" @pause="pause" :src="musicUrl" controls autoplay loop class="myaudio"></audio>
 				</div>
-				<div class="video_con" style="display: none;">
-					<video controls="controls"></video>
-					<div class="mask"></div>
+				<div class="video_con" v-show="isMv" style="display: none;">
+					<video controls="controls":src="mvUrl"></video>
+					<div class="mask" @click="hide"></div>
 				</div>
 			</div>
 		</div>
